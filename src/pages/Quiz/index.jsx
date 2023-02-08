@@ -2,10 +2,15 @@
 import {useTimer} from "../../hooks/timer.hook";
 
 //Hooks
-import { useEffect, useMemo, useState } from "react";
+import {useEffect} from "react";
 
 //ionic components
-import { IonContent, IonPage, IonBadge } from "@ionic/react";
+import {IonBadge, IonButton, IonContent, IonPage} from "@ionic/react";
+import {NavLink} from "react-router-dom";
+
+
+//Icon
+import {IoIosArrowBack} from 'react-icons/io';
 
 export function Quiz() {
     const info = {
@@ -15,17 +20,20 @@ export function Quiz() {
 
     //Timer
     const timer = useTimer(info.startTimer);
-     useEffect(() => {
-       timer.start();
-     }, []);
+    useEffect(() => {
+        timer.start();
+    }, []);
 
     return (<>
         <IonPage>
             <IonContent fullscreen>
-                <IonBadge color={timer.value <= info.minTimeAlarm ? "danger" : "primary"}
-                >
+                <NavLink to="/" end>
+                    <IoIosArrowBack/>
+                </NavLink>
+                <IonBadge color={timer.value <= info.minTimeAlarm ? "danger" : "primary"}>
                     {timer.value}
                 </IonBadge>
+                <IonButton fill="clear">Restart</IonButton>
             </IonContent>
         </IonPage>
     </>)
