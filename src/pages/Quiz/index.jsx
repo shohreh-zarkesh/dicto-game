@@ -6,11 +6,11 @@ import {useEffect} from "react";
 
 //ionic components
 import {IonBadge, IonButton, IonContent, IonPage} from "@ionic/react";
-import {NavLink} from "react-router-dom";
+import {BackButton} from "../../components/BackButton";
+import {Timer} from "./components/Timer";
+import {Card} from "../../components/Card";
+import {Score} from "./components/Score";
 
-
-//Icon
-import {IoIosArrowBack} from 'react-icons/io';
 
 export function Quiz() {
     const info = {
@@ -27,13 +27,17 @@ export function Quiz() {
     return (<>
         <IonPage>
             <IonContent fullscreen>
-                <NavLink to="/" end>
-                    <IoIosArrowBack/>
-                </NavLink>
-                <IonBadge color={timer.value <= info.minTimeAlarm ? "danger" : "primary"}>
-                    {timer.value}
+                <BackButton/>
+                <Timer minutes={timer.minutes} seconds={timer.seconds} minValue={info.minTimeAlarm}></Timer>
+                <IonButton size="small" fill="clear">Restart</IonButton>
+                <Card text="quiz">  </Card>
+                <Score score="6"> </Score>
+                <IonBadge>
+                    CORRECT
                 </IonBadge>
-                <IonButton fill="clear">Restart</IonButton>
+                <IonBadge>
+                    WRONG
+                </IonBadge>
             </IonContent>
         </IonPage>
     </>)
