@@ -1,8 +1,6 @@
-
-
-import React, { Suspense} from 'react';
+import React from 'react';
 import {setupIonicReact} from "@ionic/react";
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -20,23 +18,30 @@ import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
-
-import {Quiz} from "./pages/Quiz";
-import {Home} from "./pages/Home";
-
+import {PrivateRoute} from "./components/PrivateRoute";
+import {HomeScreen} from "./screens/Home";
+import {QuizScreen} from "./screens/Home/screens/Quiz";
+import {ResultsScreen} from "./screens/Home/screens/Results";
+import {SignUpScreen} from "./screens/Home/screens/Auth/screens/SignUp";
+import {LoginScreen} from "./screens/Home/screens/Auth/screens/Login";
 
 setupIonicReact();
 
 function App() {
-  return (
-      <Router>
-          <Suspense fallback={<div>Loading...</div>}>
-              <Routes>
-                  <Route path="/" element={<Home/>}/>
-                  <Route path="/quiz" element={<Quiz/>}/>
-              </Routes>
-          </Suspense>
-      </Router>
-  );
+
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route exact path='/' element={<PrivateRoute/>}>
+                    <Route exact path='/' element={<HomeScreen/>}/>
+                    <Route path="/quiz" element={<QuizScreen/>}/>;
+                    <Route path="/result" element={<ResultsScreen/>}/>;
+                </Route>
+                <Route path="/auth/login" element={<LoginScreen/>}/>;
+                <Route path="/auth/signUp" element={<SignUpScreen/>}/>;
+            </Routes>
+        </BrowserRouter>
+    );
 }
+
 export default App;

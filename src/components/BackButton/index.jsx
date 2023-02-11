@@ -1,10 +1,10 @@
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {IoIosArrowBack} from "react-icons/io";
 
 export function BackButton (){
     return (
-        <NavLink to="/" end>
+        <Link to="/" end>
             <IoIosArrowBack/>
-        </NavLink>
+        </Link>
     )
 }

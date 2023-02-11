@@ -1,0 +1,21 @@
+.ion-padding {
+    --padding-start: 50px;
+    --padding-end: 50px;
+}
+
+ion-title {
+    text-align: center;
+
+}
+
+.question {
+    height: 30%;
+}
+
+.score {
+    height: 40%;
+}
+
+.buttons {
+    height: 30%;
+}

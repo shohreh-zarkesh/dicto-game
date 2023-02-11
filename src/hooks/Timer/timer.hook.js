@@ -1,32 +1,17 @@
 import {useEffect, useState} from "react";
 
-export function useTimer(startsFrom) {
+export function useTimer() {
+
+    const info = {
+        startFrom: 30,  //30 second
+        minTimeAlarm: 3,
+    };
 
     const [minutes, setMinutes] = useState(0);
-    const [seconds, setSeconds] = useState(startsFrom);
+    const [seconds, setSeconds] = useState(info.startFrom);
     const [isStarted, setIsStarted] = useState(false);
 
     const isDone = seconds === 0;
-
-    // Watchers
-    // useEffect(() => {
-    //     if(isStarted) {
-    //         timerId.current = setInterval(() => {
-    //             setTimer((prevTimer) => {
-    //                 const nextTimer = prevTimer - 1;
-    //
-    //                 if(nextTimer === 0) {
-    //                     stop();
-    //                 }
-    //
-    //                 return nextTimer;
-    //             });
-    //         }, 1000);
-    //     }else {
-    //         clearInterval(timerId.current);
-    //         timerId.current = null;
-    //     }
-    // }, [isStarted])
 
     useEffect(() => {
         if (isStarted) {
@@ -49,7 +34,6 @@ export function useTimer(startsFrom) {
         }
     });
 
-
     // Handlers
     function start() {
         setIsStarted(true);
@@ -61,15 +45,20 @@ export function useTimer(startsFrom) {
 
     function reset() {
         setIsStarted(true);
-        setSeconds(startsFrom);
+        setSeconds(info.startFrom);
     }
 
     return {
-        minutes,
-        seconds,
-        isDone,
-        start,
-        stop,
-        reset,
+        info: {
+            minutes,
+            seconds,
+            isDone,
+            minTimeAlarm: info.minTimeAlarm,
+        },
+        actions: {
+            start,
+            stop,
+            reset,
+        }
     };
 }
