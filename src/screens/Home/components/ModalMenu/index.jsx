@@ -43,7 +43,7 @@ export function ModalMenu() {
                                 <IonImg src="https://i.pravatar.cc/300?u=b"/>
                             </IonAvatar>
                             <IonLabel>
-                                <h2>Connor Smith</h2>
+                                <h2>Shohreh Zarkesh</h2>
                             </IonLabel>
                         </IonItem>
                         <IonItem>
