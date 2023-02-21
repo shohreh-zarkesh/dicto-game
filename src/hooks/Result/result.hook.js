@@ -1,10 +1,7 @@
 import {useState} from "react";
+import {info} from "../../config/globaInfo.config";
 
-export function useResult(totalQuestionsCount = 0) {
-    const info = {
-        correctScore: 10,
-        wrongScore: 5,
-    };
+export function useResult() {
 
     //date: new Date().toLocaleString(),
 
@@ -18,9 +15,9 @@ export function useResult(totalQuestionsCount = 0) {
 
     function questionsCounter() {
         setQuestionCount((prevState) => prevState + 1)
-        console.log(questionCount)
+        console.log("chera mizane 0", questionCount)
 //todo
-        if (questionCount === totalQuestionsCount) {
+        if (questionCount === info.questionPerDay) {
             setIsFinished(true)
         }
     }
@@ -51,7 +48,8 @@ export function useResult(totalQuestionsCount = 0) {
     }
 
     function setFastestResponseTime(time) {
-        setFastestTime(time)
+        if (time > fastestResponseTime)
+            setFastestTime(time)
     }
 
     return ({
