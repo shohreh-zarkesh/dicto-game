@@ -1,18 +1,25 @@
 import {LOAD_QUESTIONS, SET_QUESTIONS} from "./questions.constant";
 
 const initialState = {
-    data: {},
-    Loading: false,
+    data: [],
+    loading: false,
 }
 
 export function questionsReducer(state = initialState, action) {
-    const updateState = $state => Object.assign({}, $state, state)
     switch (action.type) {
-        case SET_QUESTIONS:
-            state = updateState({data: {...action.payload}})
+        case SET_QUESTIONS: {
+            state = {
+                ...state,
+                data: action.payload
+            }
+        }
             break;
         case LOAD_QUESTIONS:
-            state = updateState({Loading: action.payload})
+
+            state = {
+                ...state,
+                loading: action.payload
+            }
             break;
     }
     return state;
