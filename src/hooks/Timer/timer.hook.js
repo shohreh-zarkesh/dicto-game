@@ -1,17 +1,13 @@
 import {useEffect, useState} from "react";
+import {info} from "../../config/globaInfo.config";
 
 export function useTimer() {
-
-    const info = {
-        startFrom: 30,  //30 second
-        minTimeAlarm: 3,
-    };
 
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(info.startFrom);
     const [isStarted, setIsStarted] = useState(false);
 
-    const isDone = seconds === 0;
+    const isTimeOut = seconds === 0;
 
     useEffect(() => {
         if (isStarted) {
@@ -48,11 +44,12 @@ export function useTimer() {
         setSeconds(info.startFrom);
     }
 
+
     return {
         info: {
             minutes,
             seconds,
-            isDone,
+            isTimeOut,
             minTimeAlarm: info.minTimeAlarm,
         },
         actions: {
